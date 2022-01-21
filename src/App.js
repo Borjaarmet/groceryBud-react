@@ -11,11 +11,20 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!name) {
+      // display alert
+    } else if (name && isEditing) {
+      // deal with edit
+    } else {
+      const newItem = { id: new Date().getTime().toString(), title: name };
+      setList([...list, newItem]);
+      setName("");
+    }
     console.log("submit");
   };
   return (
     <section className="section-center">
-      <form className="grocery-form">
+      <form className="grocery-form" onSubmit={handleSubmit}>
         {alert.show && <Alert />}
         <h3>Grocery bud</h3>
         <div className="form-control">
@@ -34,7 +43,7 @@ function App() {
         </div>
       </form>
       <div className="grocery-container">
-        <List />
+        <List items={list} />
         <button className="clear-btn">Clear items</button>
       </div>
     </section>
