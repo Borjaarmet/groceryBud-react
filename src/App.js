@@ -23,6 +23,7 @@ function App() {
     } else {
       const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
+      showAlert(true, "success", "new item added to the list");
       setName("");
     }
     console.log("submit");
@@ -30,6 +31,11 @@ function App() {
 
   const showAlert = (show = false, type = "", msg = "") => {
     setAlert({ show, type, msg });
+  };
+
+  const clearList = () => {
+    showAlert(true, "danger", " The list is empty now");
+    setList([]);
   };
   return (
     <section className="section-center">
@@ -59,7 +65,9 @@ function App() {
       ) : (
         <div className="grocery-container">
           <List items={list} />
-          <button className="clear-btn">Clear items</button>
+          <button className="clear-btn" onClick={clearList}>
+            Clear items
+          </button>
         </div>
       )}
     </section>
