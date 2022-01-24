@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const Alert = ({ msg, type, removeAlert }) => {
+const Alert = ({ msg, type, removeAlert, list }) => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       removeAlert();
@@ -8,7 +8,7 @@ const Alert = ({ msg, type, removeAlert }) => {
         clearTimeout(timeOut);
       };
     }, 2500);
-  }, []);
+  }, [list]);
 
   return <p className={`alert alert-${type}`}>{msg}</p>;
 };
